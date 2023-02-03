@@ -9,7 +9,7 @@ export const userSchema = z.object({
     email: z.string({
         required_error: "Email is required"
     }).email({
-        message: "Email must be in email format"
+        message: "Email must be in email format (xxx@xxxx.com)"
     }),
     password: z.string({
         required_error: "Password is required"

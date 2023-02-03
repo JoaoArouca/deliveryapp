@@ -1,10 +1,9 @@
-import { IUser } from './../Interfaces/index';
 import User from './User';
 import { describe, expect, it } from 'vitest'
 import CustomError from '../Utils/CustomError';
 
 describe('1 - User test', () => {
-    it('create an User', () => {
+    it('should be able to create an User', () => {
         const john = new User({
             name: 'John Doe',
             email: 'john@email.com',
@@ -14,9 +13,11 @@ describe('1 - User test', () => {
 
         expect(john).toBeInstanceOf(User)
         expect(john.name).toBe('John Doe')
+        expect(john.email).toBe('john@email.com')
+        expect(john.password).toBe('secret')
     });
 
-    it('create an User whithout role', () => {
+    it('should be able to create an User whithout role', () => {
         const john = new User({
             name: 'John Doe',
             email: 'john@email.com',
@@ -45,7 +46,7 @@ describe('1 - User test', () => {
                 password: 'secret',
                 role: 'customer'
             });
-        }).toThrowError(new CustomError('Email must be in email format'))
+        }).toThrowError(new CustomError("Email must be in email format (xxx@xxxx.com)"))
 
         expect(() => {
             return new User({
