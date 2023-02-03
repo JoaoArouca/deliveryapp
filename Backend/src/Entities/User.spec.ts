@@ -1,3 +1,4 @@
+import { IUser } from './../Interfaces/index';
 import User from './User';
 import { describe, expect, it } from 'vitest'
 import CustomError from '../Utils/CustomError';
@@ -13,6 +14,18 @@ describe('1 - User test', () => {
 
         expect(john).toBeInstanceOf(User)
         expect(john.name).toBe('John Doe')
+    });
+
+    it('create an User whithout role', () => {
+        const john = new User({
+            name: 'John Doe',
+            email: 'john@email.com',
+            password: 'secret'
+        });
+
+        expect(john).toBeInstanceOf(User)
+        expect(john.name).toBe('John Doe')
+        expect(john.role).toBe('customer')
     });
 
     it('cannot creat an User whithout some arguments', () => {
