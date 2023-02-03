@@ -1,35 +1,36 @@
 import { IUser } from "../Interfaces";
-import CustomError from "../Utils/CustomError"
+import CustomError from "../Utils/CustomError";
+import { userSchema } from "../Utils/Schemas";
+import * as z from "zod";
+
+type userZod = z.infer<typeof userSchema>;
 
 export default class User {
-    props: IUser
+    props: userZod;
 
     constructor(props: IUser) {
-        const { name, email, password, role } = props;
-
-        if (!name || !role || !email || !password) {
-            throw new CustomError('Some fields are missing')
+        try {
+            props.role = 'customer';
+            this.props = userSchema.parse(props);
+        } catch (error: any) {
+            throw new CustomError(error.issues[0].message);
         }
-
-        this.props = props
-
     }
 
     // getters
-
-    get name(): String {
+    get name(): string {
         return this.props.name;
     }
 
-    get email(): String {
-        return this.props.email
+    get email(): string {
+        return this.props.email;
     }
 
-    get password(): String {
-        return this.props.password
+    get password(): string {
+        return this.props.password;
     }
 
-    get role(): String {
-        return this.props.role
+    get role(): string {
+        return this.props.role;
     }
 }

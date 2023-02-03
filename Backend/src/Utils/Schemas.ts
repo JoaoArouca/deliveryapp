@@ -16,5 +16,5 @@ export const userSchema = z.object({
     }).min(6, {
         message: "Password must be at least 6 character length"
     }),
-    role: z.string().optional()
+    role: z.string().optional().default('customer')
 });

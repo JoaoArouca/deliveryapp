@@ -1,6 +1,6 @@
 import User from './User';
 import { describe, expect, it } from 'vitest'
-import MyError from '../Utils/CustomError';
+import CustomError from '../Utils/CustomError';
 
 describe('1 - User test', () => {
     it('create an User', () => {
@@ -21,9 +21,9 @@ describe('1 - User test', () => {
                 name: '',
                 email: 'john@email.com',
                 password: 'secret',
-                role: 'customer'
             });
-        }).toThrow(new MyError('Some fields are missing'))
+
+        }).toThrow(new CustomError("Name must be at least 3 characters length"))
 
         expect(() => {
             return new User({
@@ -32,7 +32,7 @@ describe('1 - User test', () => {
                 password: 'secret',
                 role: 'customer'
             });
-        }).toThrowError(new MyError('Some fields are missing'))
+        }).toThrowError(new CustomError('Email must be in email format'))
 
         expect(() => {
             return new User({
@@ -41,15 +41,6 @@ describe('1 - User test', () => {
                 password: '',
                 role: 'customer'
             });
-        }).toThrowError(new MyError('Some fields are missing'))
-
-        expect(() => {
-            return new User({
-                name: 'John Doe',
-                email: 'john@email.com',
-                password: 'secret',
-                role: ''
-            });
-        }).toThrowError(new MyError('Some fields are missing'))
+        }).toThrowError(new CustomError('Password must be at least 6 character length'))
     })
 })
