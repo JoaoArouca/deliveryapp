@@ -1,5 +1,5 @@
 import { IUser } from "../Interfaces";
-import MyError from "../Utils/MyError";
+import CustomError from "../Utils/CustomError"
 
 export default class User {
     props: IUser
@@ -8,7 +8,7 @@ export default class User {
         const { name, email, password, role } = props;
 
         if (!name || !role || !email || !password) {
-            throw new MyError('Some fields are missing')
+            throw new CustomError('Some fields are missing')
         }
 
         this.props = props

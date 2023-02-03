@@ -1,6 +1,6 @@
 import User from './User';
 import { describe, expect, it } from 'vitest'
-import MyError from '../Utils/MyError';
+import MyError from '../Utils/CustomError';
 
 describe('1 - User test', () => {
     it('create an User', () => {
