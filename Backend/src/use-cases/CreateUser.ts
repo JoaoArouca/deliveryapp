@@ -6,6 +6,7 @@ interface CreateUserRequest {
     email: string
     password: string
 }
+
 type CreateUserResponse = User;
 
 export class CreateUser {
