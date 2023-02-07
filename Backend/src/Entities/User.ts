@@ -3,7 +3,7 @@ import CustomError from "../Utils/CustomError";
 import { userSchema } from "../Utils/Schemas";
 import * as z from "zod";
 
-type userZod = z.infer<typeof userSchema>;
+type userZod = z.infer<typeof userSchema>; // Tipagem idêntica ao IUser
 
 export default class User {
     props: userZod;
@@ -13,7 +13,7 @@ export default class User {
             props.role = 'customer';
             this.props = userSchema.parse(props);
         } catch (error: any) {
-            throw new CustomError(error.issues[0].message);
+            throw new CustomError(error.issues[0].message); // Error Zod
         }
     }
 
@@ -32,5 +32,10 @@ export default class User {
 
     get role(): string {
         return this.props.role;
+    }
+
+    // setters
+    set role(newrole: string) {
+        this.props.role = newrole;
     }
 }

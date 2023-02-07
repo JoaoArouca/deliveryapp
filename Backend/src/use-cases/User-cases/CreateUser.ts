@@ -1,6 +1,6 @@
-import { UsersRepository } from './../Repositories/UsersRepository';
-import User from '../Entities/User';
-import CustomError from '../Utils/CustomError';
+import { UsersRepository } from '../../Repositories/UsersRepository';
+import User from '../../Entities/User';
+import CustomError from '../../Utils/CustomError';
 
 
 interface CreateUserRequest {
@@ -24,7 +24,7 @@ export class CreateUser {
         const user = new User({
             name,
             email,
-            password
+            password,
         });
 
         await this.userRepository.create(user); // Salva dentro do repositório local
